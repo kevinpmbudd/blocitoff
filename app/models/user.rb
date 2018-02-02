@@ -6,5 +6,10 @@ class User < ApplicationRecord
 
   validates :name,
             length: { minimum: 3, maximum: 100 },
-            presence: true 
+            presence: true
+
+  def avatar_url(size)
+    gravatar_id = Digest::MD5::hexdigest(self.email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
+  end
 end
