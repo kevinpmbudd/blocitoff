@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
+  let(:item) { create(:item, user: user) }
 
   context "guest" do
     it "redirects to sign in" do
@@ -22,13 +23,18 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "renders the #show view" do
-          get :show, params: { id: user.id }
-          expect(response).to render_template :show
-        end
+        get :show, params: { id: user.id }
+        expect(response).to render_template :show
+      end
 
       it "assigns user to @user" do
         get :show, params: { id: user.id }
         expect(assigns(:user)).to eq(user)
+      end
+
+      it "assigns items to @items" do
+        get :show, params: { id: user.id }
+        expect(assigns(:items)).to eq([item])
       end
     end
   end
