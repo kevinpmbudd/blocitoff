@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <%= form_group_tag(item.errors[:name]) do %>
-    <%= f.label :name %>
+    <%= f.label :name, "New Item" %>
     <%= f.text_field :name, class: 'form-control', placeholder: "Enter item name" %>
   <% end %>
   <div class="form-group">

@@ -21,7 +21,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'thor', '0.20.0'
-# Use Bootstrap Sass
+# Use Bootstrap
 gem 'bootstrap-sass'
 # Use Devise for authentication
 gem 'devise'

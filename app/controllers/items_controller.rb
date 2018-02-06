@@ -17,6 +17,18 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item = Item.find_by_id( params[:id] )
+
+    if @item.destroy
+      respond_to do |f|
+        f.js
+      end
+    else
+      flash.now[:alert] = "There was an error completing the item"
+    end
+  end
+
   private
   def item_params
     params.require(:item).permit(:name)

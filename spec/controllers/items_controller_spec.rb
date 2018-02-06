@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
   let(:user) { create(:user) }
+  let(:item) { create(:item, user: user) }
 
   context "signed in user" do
     before do
@@ -33,6 +34,14 @@ RSpec.describe ItemsController, type: :controller do
       it "assigns the new item to @item" do
         post :create, params: { user_id: user.id, item: { name: "Paint the fence" } }
         expect(assigns(:item)).to eq Item.last
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "deletes the item" do
+        delete :destroy, params: { user_id: user.id, id: item.id }
+        count = Item.where({id: item.id}).size
+        expect(count).to eq 0
       end
     end
   end

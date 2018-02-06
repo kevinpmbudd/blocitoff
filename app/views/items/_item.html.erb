@@ -1,10 +1,11 @@
-<div class="media">
-  <div class="media-body">
-    <h4 class="media-heading">
-      <%= item.name %>
-    </h4>
-    <small>
-      created: <%= time_ago_in_words(item.created_at) %> ago
-    </small>
+<li id="item_<%= current_user.id %>_<%= item.id %>" class="list-group-item d-flex justify-content-between lh-condensed">
+  <div>
+    <h6 class="my-0"><%= item.name %></h6>
+    <% if @user == current_user %>
+      <span class="text-muted">
+        <%= link_to "", [current_user, item], remote: true, method: :delete, class: 'glyphicon glyphicon-ok pull-right' %>
+      </span>
+    <% end %>
+    <small class="text-muted">created: <%= time_ago_in_words(item.created_at) %> ago</small>
   </div>
-</div>
+</li>
