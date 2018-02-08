@@ -21,9 +21,9 @@ class ItemsController < ApplicationController
     @item = Item.find_by_id( params[:id] )
 
     if @item.destroy
-      respond_to do |f|
-        f.js
-      end
+      # respond_to do |f|
+      #   f.js
+      # end
     else
       flash.now[:alert] = "There was an error completing the item"
     end
