@@ -19,11 +19,12 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find_by_id( params[:id] )
+    @items = Item.where(user_id: current_user.id)
 
     if @item.destroy
-      # respond_to do |f|
-      #   f.js
-      # end
+      respond_to do |format|
+        format.js {}
+      end
     else
       flash.now[:alert] = "There was an error completing the item"
     end
